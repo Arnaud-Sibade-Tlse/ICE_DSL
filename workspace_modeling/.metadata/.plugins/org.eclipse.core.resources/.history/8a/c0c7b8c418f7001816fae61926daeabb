@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel"
+    modelDirectory="/stateMachineDoItYourself/src-gen" creationIcons="false"
+    editDirectory="/stateMachineDoItYourself.edit/src-gen" editorDirectory="/stateMachineDoItYourself.editor/src-gen"
+    modelPluginID="stateMachineDoItYourself" modelName="StateMachineDoItYourself"
+    rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" codeFormatting="true"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>stateMachineDoItYourself.ecore</foreignModel>
+  <testsDirectory xsi:nil="true"/>
+  <genPackages prefix="StateMachineDoItYourself" disposableProviderFactory="true"
+      ecorePackage="stateMachineDoItYourself.ecore#/">
+    <genClasses ecoreClass="stateMachineDoItYourself.ecore#//StateMachine">
+      <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference stateMachineDoItYourself.ecore#//StateMachine/state"/>
+      <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference stateMachineDoItYourself.ecore#//StateMachine/transition"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute stateMachineDoItYourself.ecore#//StateMachine/name"/>
+      <genOperations ecoreOperation="stateMachineDoItYourself.ecore#//StateMachine/execute"/>
+    </genClasses>
+    <genClasses ecoreClass="stateMachineDoItYourself.ecore#//State">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference stateMachineDoItYourself.ecore#//State/to"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference stateMachineDoItYourself.ecore#//State/from"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute stateMachineDoItYourself.ecore#//State/name"/>
+    </genClasses>
+    <genClasses ecoreClass="stateMachineDoItYourself.ecore#//Transition">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference stateMachineDoItYourself.ecore#//Transition/ongoing"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference stateMachineDoItYourself.ecore#//Transition/outgoing"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute stateMachineDoItYourself.ecore#//Transition/name"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

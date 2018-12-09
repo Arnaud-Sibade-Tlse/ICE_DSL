@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="stateMachineDoItYourself" nsURI="http://www.example.org/stateMachineDoItYourself"
+    nsPrefix="stateMachineDoItYourself">
+  <eClassifiers xsi:type="ecore:EClass" name="StateMachine">
+    <eOperations name="execute"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="state" eType="#//State"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="transition" eType="#//Transition"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="State">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="to" eType="#//Transition"
+        eOpposite="#//Transition/ongoing"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="from" eType="#//Transition"
+        eOpposite="#//Transition/outgoing"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Transition">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ongoing" eType="#//State"
+        eOpposite="#//State/to"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="outgoing" eType="#//State"
+        eOpposite="#//State/from"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+</ecore:EPackage>

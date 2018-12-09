@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sAAP:StateMachine
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:sAAP="http://www.example.org/sAAP"
+    xsi:schemaLocation="http://www.example.org/sAAP sAAP.ecore">
+  <state name="Opened"
+      transition="//@transition.0"/>
+  <state name="Closed"
+      transition="//@transition.1"/>
+  <transition
+      name="open closed"
+      state="//@state.0"/>
+  <transition
+      name="close opened"
+      state="//@state.1"/>
+</sAAP:StateMachine>

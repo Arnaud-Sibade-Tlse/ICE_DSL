@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated stateMachineDoItYourself -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="stateMachineDoItYourself.presentation.StateMachineDoItYourselfModelWizardID"
+            name="%_UI_StateMachineDoItYourselfModelWizard_label"
+            class="stateMachineDoItYourself.presentation.StateMachineDoItYourselfModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/StateMachineDoItYourselfModelFile.gif">
+         <description>%_UI_StateMachineDoItYourselfModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated stateMachineDoItYourself -->
+      <editor
+            id="stateMachineDoItYourself.presentation.StateMachineDoItYourselfEditorID"
+            name="%_UI_StateMachineDoItYourselfEditor_label"
+            icon="icons/full/obj16/StateMachineDoItYourselfModelFile.gif"
+            extensions="statemachinedoityourself"
+            class="stateMachineDoItYourself.presentation.StateMachineDoItYourselfEditor"
+            contributorClass="stateMachineDoItYourself.presentation.StateMachineDoItYourselfActionBarContributor">
+      </editor>
+   </extension>
+</plugin>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated sAAP -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="sAAP.presentation.SAAPModelWizardID"
+            name="%_UI_SAAPModelWizard_label"
+            class="sAAP.presentation.SAAPModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/SAAPModelFile.gif">
+         <description>%_UI_SAAPModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated sAAP -->
+      <editor
+            id="sAAP.presentation.SAAPEditorID"
+            name="%_UI_SAAPEditor_label"
+            icon="icons/full/obj16/SAAPModelFile.gif"
+            extensions="saap"
+            class="sAAP.presentation.SAAPEditor"
+            contributorClass="sAAP.presentation.SAAPActionBarContributor">
+      </editor>
+   </extension>
+
+</plugin>
