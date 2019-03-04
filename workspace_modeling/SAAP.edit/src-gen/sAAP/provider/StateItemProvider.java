@@ -53,25 +53,26 @@ public class StateItemProvider extends ItemProviderAdapter implements IEditingDo
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addToPropertyDescriptor(object);
+			addOutgoingPropertyDescriptor(object);
 			addNamePropertyDescriptor(object);
-			addTransitionPropertyDescriptor(object);
+			addIncomingPropertyDescriptor(object);
+			addDefaultPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the To feature.
+	 * This adds a property descriptor for the Outgoing feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addToPropertyDescriptor(Object object) {
+	protected void addOutgoingPropertyDescriptor(Object object) {
 		itemPropertyDescriptors
 				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_State_to_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_State_to_feature", "_UI_State_type"),
-						SAAPPackage.Literals.STATE__TO, true, false, true, null, null, null));
+						getResourceLocator(), getString("_UI_State_outgoing_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_State_outgoing_feature", "_UI_State_type"),
+						SAAPPackage.Literals.STATE__OUTGOING, true, false, true, null, null, null));
 	}
 
 	/**
@@ -90,18 +91,32 @@ public class StateItemProvider extends ItemProviderAdapter implements IEditingDo
 	}
 
 	/**
-	 * This adds a property descriptor for the Transition feature.
+	 * This adds a property descriptor for the Incoming feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addTransitionPropertyDescriptor(Object object) {
+	protected void addIncomingPropertyDescriptor(Object object) {
 		itemPropertyDescriptors
 				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_State_transition_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_State_transition_feature",
-								"_UI_State_type"),
-						SAAPPackage.Literals.STATE__TRANSITION, true, false, true, null, null, null));
+						getResourceLocator(), getString("_UI_State_incoming_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_State_incoming_feature", "_UI_State_type"),
+						SAAPPackage.Literals.STATE__INCOMING, true, false, true, null, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Default feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addDefaultPropertyDescriptor(Object object) {
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_State_default_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_State_default_feature", "_UI_State_type"),
+						SAAPPackage.Literals.STATE__DEFAULT, true, false, false,
+						ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -151,6 +166,7 @@ public class StateItemProvider extends ItemProviderAdapter implements IEditingDo
 
 		switch (notification.getFeatureID(State.class)) {
 		case SAAPPackage.STATE__NAME:
+		case SAAPPackage.STATE__DEFAULT:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		}

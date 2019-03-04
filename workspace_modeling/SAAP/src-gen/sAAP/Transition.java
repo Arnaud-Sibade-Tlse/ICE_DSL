@@ -2,8 +2,6 @@
  */
 package sAAP;
 
-import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -15,9 +13,9 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link sAAP.Transition#getIncoming <em>Incoming</em>}</li>
+ *   <li>{@link sAAP.Transition#getFrom <em>From</em>}</li>
  *   <li>{@link sAAP.Transition#getName <em>Name</em>}</li>
- *   <li>{@link sAAP.Transition#getState <em>State</em>}</li>
+ *   <li>{@link sAAP.Transition#getTo <em>To</em>}</li>
  * </ul>
  *
  * @see sAAP.SAAPPackage#getTransition()
@@ -26,22 +24,32 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface Transition extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Incoming</b></em>' reference list.
-	 * The list contents are of type {@link sAAP.State}.
-	 * It is bidirectional and its opposite is '{@link sAAP.State#getTo <em>To</em>}'.
+	 * Returns the value of the '<em><b>From</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link sAAP.State#getOutgoing <em>Outgoing</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Incoming</em>' reference list isn't clear,
+	 * If the meaning of the '<em>From</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Incoming</em>' reference list.
-	 * @see sAAP.SAAPPackage#getTransition_Incoming()
-	 * @see sAAP.State#getTo
-	 * @model opposite="to"
+	 * @return the value of the '<em>From</em>' reference.
+	 * @see #setFrom(State)
+	 * @see sAAP.SAAPPackage#getTransition_From()
+	 * @see sAAP.State#getOutgoing
+	 * @model opposite="outgoing" required="true"
 	 * @generated
 	 */
-	EList<State> getIncoming();
+	State getFrom();
+
+	/**
+	 * Sets the value of the '{@link sAAP.Transition#getFrom <em>From</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>From</em>' reference.
+	 * @see #getFrom()
+	 * @generated
+	 */
+	void setFrom(State value);
 
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.
@@ -70,21 +78,31 @@ public interface Transition extends EObject {
 	void setName(String value);
 
 	/**
-	 * Returns the value of the '<em><b>State</b></em>' reference list.
-	 * The list contents are of type {@link sAAP.State}.
-	 * It is bidirectional and its opposite is '{@link sAAP.State#getTransition <em>Transition</em>}'.
+	 * Returns the value of the '<em><b>To</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link sAAP.State#getIncoming <em>Incoming</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>State</em>' reference list isn't clear,
+	 * If the meaning of the '<em>To</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>State</em>' reference list.
-	 * @see sAAP.SAAPPackage#getTransition_State()
-	 * @see sAAP.State#getTransition
-	 * @model opposite="transition"
+	 * @return the value of the '<em>To</em>' reference.
+	 * @see #setTo(State)
+	 * @see sAAP.SAAPPackage#getTransition_To()
+	 * @see sAAP.State#getIncoming
+	 * @model opposite="incoming" required="true"
 	 * @generated
 	 */
-	EList<State> getState();
+	State getTo();
+
+	/**
+	 * Sets the value of the '{@link sAAP.Transition#getTo <em>To</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>To</em>' reference.
+	 * @see #getTo()
+	 * @generated
+	 */
+	void setTo(State value);
 
 } // Transition

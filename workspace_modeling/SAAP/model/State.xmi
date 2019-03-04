@@ -6,13 +6,18 @@
     xmlns:sAAP="http://www.example.org/sAAP"
     xsi:schemaLocation="http://www.example.org/sAAP sAAP.ecore">
   <state name="Opened"
-      transition="//@transition.0"/>
+      outgoing="//@transition.0"
+      incoming="//@transition.1"
+      default="true"/>
   <state name="Closed"
-      transition="//@transition.1"/>
+      outgoing="//@transition.1"
+      incoming="//@transition.0"/>
   <transition
       name="open closed"
-      state="//@state.0"/>
+      from="//@state.1"
+      to="//@state.0"/>
   <transition
       name="close opened"
-      state="//@state.1"/>
+      from="//@state.0"
+      to="//@state.1"/>
 </sAAP:StateMachine>

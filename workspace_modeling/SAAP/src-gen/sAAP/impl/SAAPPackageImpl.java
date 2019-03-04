@@ -72,7 +72,7 @@ public class SAAPPackageImpl extends EPackageImpl implements SAAPPackage {
 
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
-	 * 
+	 *
 	 * <p>This method is used to initialize {@link SAAPPackage#eINSTANCE} when that field is accessed.
 	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
 	 * <!-- begin-user-doc -->
@@ -87,9 +87,10 @@ public class SAAPPackageImpl extends EPackageImpl implements SAAPPackage {
 			return (SAAPPackage) EPackage.Registry.INSTANCE.getEPackage(SAAPPackage.eNS_URI);
 
 		// Obtain or create and register package
-		SAAPPackageImpl theSAAPPackage = (SAAPPackageImpl) (EPackage.Registry.INSTANCE
-				.get(eNS_URI) instanceof SAAPPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI)
-						: new SAAPPackageImpl());
+		Object registeredSAAPPackage = EPackage.Registry.INSTANCE.get(eNS_URI);
+		SAAPPackageImpl theSAAPPackage = registeredSAAPPackage instanceof SAAPPackageImpl
+				? (SAAPPackageImpl) registeredSAAPPackage
+				: new SAAPPackageImpl();
 
 		isInited = true;
 
@@ -121,7 +122,7 @@ public class SAAPPackageImpl extends EPackageImpl implements SAAPPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getState_To() {
+	public EReference getState_Outgoing() {
 		return (EReference) stateEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -139,8 +140,17 @@ public class SAAPPackageImpl extends EPackageImpl implements SAAPPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getState_Transition() {
+	public EReference getState_Incoming() {
 		return (EReference) stateEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getState_Default() {
+		return (EAttribute) stateEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -202,7 +212,7 @@ public class SAAPPackageImpl extends EPackageImpl implements SAAPPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTransition_Incoming() {
+	public EReference getTransition_From() {
 		return (EReference) transitionEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -220,7 +230,7 @@ public class SAAPPackageImpl extends EPackageImpl implements SAAPPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTransition_State() {
+	public EReference getTransition_To() {
 		return (EReference) transitionEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -254,9 +264,10 @@ public class SAAPPackageImpl extends EPackageImpl implements SAAPPackage {
 
 		// Create classes and their features
 		stateEClass = createEClass(STATE);
-		createEReference(stateEClass, STATE__TO);
+		createEReference(stateEClass, STATE__OUTGOING);
 		createEAttribute(stateEClass, STATE__NAME);
-		createEReference(stateEClass, STATE__TRANSITION);
+		createEReference(stateEClass, STATE__INCOMING);
+		createEAttribute(stateEClass, STATE__DEFAULT);
 
 		stateMachineEClass = createEClass(STATE_MACHINE);
 		createEReference(stateMachineEClass, STATE_MACHINE__STATE);
@@ -265,9 +276,9 @@ public class SAAPPackageImpl extends EPackageImpl implements SAAPPackage {
 		createEOperation(stateMachineEClass, STATE_MACHINE___EXECUTE);
 
 		transitionEClass = createEClass(TRANSITION);
-		createEReference(transitionEClass, TRANSITION__INCOMING);
+		createEReference(transitionEClass, TRANSITION__FROM);
 		createEAttribute(transitionEClass, TRANSITION__NAME);
-		createEReference(transitionEClass, TRANSITION__STATE);
+		createEReference(transitionEClass, TRANSITION__TO);
 	}
 
 	/**
@@ -302,14 +313,16 @@ public class SAAPPackageImpl extends EPackageImpl implements SAAPPackage {
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(stateEClass, State.class, "State", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getState_To(), this.getTransition(), this.getTransition_Incoming(), "to", null, 1, 1,
+		initEReference(getState_Outgoing(), this.getTransition(), this.getTransition_From(), "outgoing", null, 0, -1,
 				State.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getState_Name(), ecorePackage.getEString(), "name", null, 0, 1, State.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getState_Transition(), this.getTransition(), this.getTransition_State(), "transition", null, 1,
-				1, State.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+		initEReference(getState_Incoming(), this.getTransition(), this.getTransition_To(), "incoming", null, 0, -1,
+				State.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getState_Default(), ecorePackage.getEBoolean(), "default", null, 0, 1, State.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(stateMachineEClass, StateMachine.class, "StateMachine", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
@@ -326,12 +339,12 @@ public class SAAPPackageImpl extends EPackageImpl implements SAAPPackage {
 
 		initEClass(transitionEClass, Transition.class, "Transition", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getTransition_Incoming(), this.getState(), this.getState_To(), "incoming", null, 0, -1,
+		initEReference(getTransition_From(), this.getState(), this.getState_Outgoing(), "from", null, 1, 1,
 				Transition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getTransition_Name(), ecorePackage.getEString(), "name", null, 0, 1, Transition.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getTransition_State(), this.getState(), this.getState_Transition(), "state", null, 0, -1,
+		initEReference(getTransition_To(), this.getState(), this.getState_Incoming(), "to", null, 1, 1,
 				Transition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 

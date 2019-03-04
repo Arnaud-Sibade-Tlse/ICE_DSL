@@ -160,6 +160,7 @@ public class SAAPActionBarContributor extends EditingDomainActionBarContributor 
 	 */
 	@Override
 	public void contributeToToolBar(IToolBarManager toolBarManager) {
+		super.contributeToToolBar(toolBarManager);
 		toolBarManager.add(new Separator("saap-settings"));
 		toolBarManager.add(new Separator("saap-additions"));
 	}

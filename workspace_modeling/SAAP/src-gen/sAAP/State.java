@@ -2,6 +2,7 @@
  */
 package sAAP;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -13,9 +14,10 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link sAAP.State#getTo <em>To</em>}</li>
+ *   <li>{@link sAAP.State#getOutgoing <em>Outgoing</em>}</li>
  *   <li>{@link sAAP.State#getName <em>Name</em>}</li>
- *   <li>{@link sAAP.State#getTransition <em>Transition</em>}</li>
+ *   <li>{@link sAAP.State#getIncoming <em>Incoming</em>}</li>
+ *   <li>{@link sAAP.State#isDefault <em>Default</em>}</li>
  * </ul>
  *
  * @see sAAP.SAAPPackage#getState()
@@ -24,32 +26,22 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface State extends EObject {
 	/**
-	 * Returns the value of the '<em><b>To</b></em>' reference.
-	 * It is bidirectional and its opposite is '{@link sAAP.Transition#getIncoming <em>Incoming</em>}'.
+	 * Returns the value of the '<em><b>Outgoing</b></em>' reference list.
+	 * The list contents are of type {@link sAAP.Transition}.
+	 * It is bidirectional and its opposite is '{@link sAAP.Transition#getFrom <em>From</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>To</em>' reference isn't clear,
+	 * If the meaning of the '<em>Outgoing</em>' reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>To</em>' reference.
-	 * @see #setTo(Transition)
-	 * @see sAAP.SAAPPackage#getState_To()
-	 * @see sAAP.Transition#getIncoming
-	 * @model opposite="incoming" required="true"
+	 * @return the value of the '<em>Outgoing</em>' reference list.
+	 * @see sAAP.SAAPPackage#getState_Outgoing()
+	 * @see sAAP.Transition#getFrom
+	 * @model opposite="from"
 	 * @generated
 	 */
-	Transition getTo();
-
-	/**
-	 * Sets the value of the '{@link sAAP.State#getTo <em>To</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>To</em>' reference.
-	 * @see #getTo()
-	 * @generated
-	 */
-	void setTo(Transition value);
+	EList<Transition> getOutgoing();
 
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.
@@ -78,31 +70,47 @@ public interface State extends EObject {
 	void setName(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Transition</b></em>' reference.
-	 * It is bidirectional and its opposite is '{@link sAAP.Transition#getState <em>State</em>}'.
+	 * Returns the value of the '<em><b>Incoming</b></em>' reference list.
+	 * The list contents are of type {@link sAAP.Transition}.
+	 * It is bidirectional and its opposite is '{@link sAAP.Transition#getTo <em>To</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Transition</em>' reference isn't clear,
+	 * If the meaning of the '<em>Incoming</em>' reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Transition</em>' reference.
-	 * @see #setTransition(Transition)
-	 * @see sAAP.SAAPPackage#getState_Transition()
-	 * @see sAAP.Transition#getState
-	 * @model opposite="state" required="true"
+	 * @return the value of the '<em>Incoming</em>' reference list.
+	 * @see sAAP.SAAPPackage#getState_Incoming()
+	 * @see sAAP.Transition#getTo
+	 * @model opposite="to"
 	 * @generated
 	 */
-	Transition getTransition();
+	EList<Transition> getIncoming();
 
 	/**
-	 * Sets the value of the '{@link sAAP.State#getTransition <em>Transition</em>}' reference.
+	 * Returns the value of the '<em><b>Default</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Default</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Transition</em>' reference.
-	 * @see #getTransition()
+	 * @return the value of the '<em>Default</em>' attribute.
+	 * @see #setDefault(boolean)
+	 * @see sAAP.SAAPPackage#getState_Default()
+	 * @model
 	 * @generated
 	 */
-	void setTransition(Transition value);
+	boolean isDefault();
+
+	/**
+	 * Sets the value of the '{@link sAAP.State#isDefault <em>Default</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Default</em>' attribute.
+	 * @see #isDefault()
+	 * @generated
+	 */
+	void setDefault(boolean value);
 
 } // State

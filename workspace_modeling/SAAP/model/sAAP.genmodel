@@ -9,9 +9,10 @@
   <testsDirectory xsi:nil="true"/>
   <genPackages prefix="SAAP" disposableProviderFactory="true" ecorePackage="sAAP.ecore#/">
     <genClasses ecoreClass="sAAP.ecore#//State">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference sAAP.ecore#//State/to"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference sAAP.ecore#//State/outgoing"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sAAP.ecore#//State/name"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference sAAP.ecore#//State/transition"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference sAAP.ecore#//State/incoming"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sAAP.ecore#//State/default"/>
     </genClasses>
     <genClasses ecoreClass="sAAP.ecore#//StateMachine">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sAAP.ecore#//StateMachine/state"/>
@@ -20,9 +21,9 @@
       <genOperations ecoreOperation="sAAP.ecore#//StateMachine/execute"/>
     </genClasses>
     <genClasses ecoreClass="sAAP.ecore#//Transition">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference sAAP.ecore#//Transition/incoming"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference sAAP.ecore#//Transition/from"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sAAP.ecore#//Transition/name"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference sAAP.ecore#//Transition/state"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference sAAP.ecore#//Transition/to"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

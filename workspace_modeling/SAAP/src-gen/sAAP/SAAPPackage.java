@@ -68,13 +68,13 @@ public interface SAAPPackage extends EPackage {
 	int STATE = 0;
 
 	/**
-	 * The feature id for the '<em><b>To</b></em>' reference.
+	 * The feature id for the '<em><b>Outgoing</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STATE__TO = 0;
+	int STATE__OUTGOING = 0;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -86,13 +86,22 @@ public interface SAAPPackage extends EPackage {
 	int STATE__NAME = 1;
 
 	/**
-	 * The feature id for the '<em><b>Transition</b></em>' reference.
+	 * The feature id for the '<em><b>Incoming</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STATE__TRANSITION = 2;
+	int STATE__INCOMING = 2;
+
+	/**
+	 * The feature id for the '<em><b>Default</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE__DEFAULT = 3;
 
 	/**
 	 * The number of structural features of the '<em>State</em>' class.
@@ -101,7 +110,7 @@ public interface SAAPPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STATE_FEATURE_COUNT = 3;
+	int STATE_FEATURE_COUNT = 4;
 
 	/**
 	 * The number of operations of the '<em>State</em>' class.
@@ -187,13 +196,13 @@ public interface SAAPPackage extends EPackage {
 	int TRANSITION = 2;
 
 	/**
-	 * The feature id for the '<em><b>Incoming</b></em>' reference list.
+	 * The feature id for the '<em><b>From</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TRANSITION__INCOMING = 0;
+	int TRANSITION__FROM = 0;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -205,13 +214,13 @@ public interface SAAPPackage extends EPackage {
 	int TRANSITION__NAME = 1;
 
 	/**
-	 * The feature id for the '<em><b>State</b></em>' reference list.
+	 * The feature id for the '<em><b>To</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TRANSITION__STATE = 2;
+	int TRANSITION__TO = 2;
 
 	/**
 	 * The number of structural features of the '<em>Transition</em>' class.
@@ -242,15 +251,15 @@ public interface SAAPPackage extends EPackage {
 	EClass getState();
 
 	/**
-	 * Returns the meta object for the reference '{@link sAAP.State#getTo <em>To</em>}'.
+	 * Returns the meta object for the reference list '{@link sAAP.State#getOutgoing <em>Outgoing</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>To</em>'.
-	 * @see sAAP.State#getTo()
+	 * @return the meta object for the reference list '<em>Outgoing</em>'.
+	 * @see sAAP.State#getOutgoing()
 	 * @see #getState()
 	 * @generated
 	 */
-	EReference getState_To();
+	EReference getState_Outgoing();
 
 	/**
 	 * Returns the meta object for the attribute '{@link sAAP.State#getName <em>Name</em>}'.
@@ -264,15 +273,26 @@ public interface SAAPPackage extends EPackage {
 	EAttribute getState_Name();
 
 	/**
-	 * Returns the meta object for the reference '{@link sAAP.State#getTransition <em>Transition</em>}'.
+	 * Returns the meta object for the reference list '{@link sAAP.State#getIncoming <em>Incoming</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Transition</em>'.
-	 * @see sAAP.State#getTransition()
+	 * @return the meta object for the reference list '<em>Incoming</em>'.
+	 * @see sAAP.State#getIncoming()
 	 * @see #getState()
 	 * @generated
 	 */
-	EReference getState_Transition();
+	EReference getState_Incoming();
+
+	/**
+	 * Returns the meta object for the attribute '{@link sAAP.State#isDefault <em>Default</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Default</em>'.
+	 * @see sAAP.State#isDefault()
+	 * @see #getState()
+	 * @generated
+	 */
+	EAttribute getState_Default();
 
 	/**
 	 * Returns the meta object for class '{@link sAAP.StateMachine <em>State Machine</em>}'.
@@ -338,15 +358,15 @@ public interface SAAPPackage extends EPackage {
 	EClass getTransition();
 
 	/**
-	 * Returns the meta object for the reference list '{@link sAAP.Transition#getIncoming <em>Incoming</em>}'.
+	 * Returns the meta object for the reference '{@link sAAP.Transition#getFrom <em>From</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Incoming</em>'.
-	 * @see sAAP.Transition#getIncoming()
+	 * @return the meta object for the reference '<em>From</em>'.
+	 * @see sAAP.Transition#getFrom()
 	 * @see #getTransition()
 	 * @generated
 	 */
-	EReference getTransition_Incoming();
+	EReference getTransition_From();
 
 	/**
 	 * Returns the meta object for the attribute '{@link sAAP.Transition#getName <em>Name</em>}'.
@@ -360,15 +380,15 @@ public interface SAAPPackage extends EPackage {
 	EAttribute getTransition_Name();
 
 	/**
-	 * Returns the meta object for the reference list '{@link sAAP.Transition#getState <em>State</em>}'.
+	 * Returns the meta object for the reference '{@link sAAP.Transition#getTo <em>To</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>State</em>'.
-	 * @see sAAP.Transition#getState()
+	 * @return the meta object for the reference '<em>To</em>'.
+	 * @see sAAP.Transition#getTo()
 	 * @see #getTransition()
 	 * @generated
 	 */
-	EReference getTransition_State();
+	EReference getTransition_To();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -404,12 +424,12 @@ public interface SAAPPackage extends EPackage {
 		EClass STATE = eINSTANCE.getState();
 
 		/**
-		 * The meta object literal for the '<em><b>To</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Outgoing</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference STATE__TO = eINSTANCE.getState_To();
+		EReference STATE__OUTGOING = eINSTANCE.getState_Outgoing();
 
 		/**
 		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
@@ -420,12 +440,20 @@ public interface SAAPPackage extends EPackage {
 		EAttribute STATE__NAME = eINSTANCE.getState_Name();
 
 		/**
-		 * The meta object literal for the '<em><b>Transition</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Incoming</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference STATE__TRANSITION = eINSTANCE.getState_Transition();
+		EReference STATE__INCOMING = eINSTANCE.getState_Incoming();
+
+		/**
+		 * The meta object literal for the '<em><b>Default</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute STATE__DEFAULT = eINSTANCE.getState_Default();
 
 		/**
 		 * The meta object literal for the '{@link sAAP.impl.StateMachineImpl <em>State Machine</em>}' class.
@@ -480,12 +508,12 @@ public interface SAAPPackage extends EPackage {
 		EClass TRANSITION = eINSTANCE.getTransition();
 
 		/**
-		 * The meta object literal for the '<em><b>Incoming</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>From</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference TRANSITION__INCOMING = eINSTANCE.getTransition_Incoming();
+		EReference TRANSITION__FROM = eINSTANCE.getTransition_From();
 
 		/**
 		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
@@ -496,12 +524,12 @@ public interface SAAPPackage extends EPackage {
 		EAttribute TRANSITION__NAME = eINSTANCE.getTransition_Name();
 
 		/**
-		 * The meta object literal for the '<em><b>State</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>To</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference TRANSITION__STATE = eINSTANCE.getTransition_State();
+		EReference TRANSITION__TO = eINSTANCE.getTransition_To();
 
 	}
 

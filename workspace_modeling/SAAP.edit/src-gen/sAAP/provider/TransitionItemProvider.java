@@ -53,26 +53,26 @@ public class TransitionItemProvider extends ItemProviderAdapter implements IEdit
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addIncomingPropertyDescriptor(object);
+			addFromPropertyDescriptor(object);
 			addNamePropertyDescriptor(object);
-			addStatePropertyDescriptor(object);
+			addToPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Incoming feature.
+	 * This adds a property descriptor for the From feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addIncomingPropertyDescriptor(Object object) {
+	protected void addFromPropertyDescriptor(Object object) {
 		itemPropertyDescriptors
 				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_Transition_incoming_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_Transition_incoming_feature",
+						getResourceLocator(), getString("_UI_Transition_from_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_Transition_from_feature",
 								"_UI_Transition_type"),
-						SAAPPackage.Literals.TRANSITION__INCOMING, true, false, true, null, null, null));
+						SAAPPackage.Literals.TRANSITION__FROM, true, false, true, null, null, null));
 	}
 
 	/**
@@ -92,18 +92,18 @@ public class TransitionItemProvider extends ItemProviderAdapter implements IEdit
 	}
 
 	/**
-	 * This adds a property descriptor for the State feature.
+	 * This adds a property descriptor for the To feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addStatePropertyDescriptor(Object object) {
+	protected void addToPropertyDescriptor(Object object) {
 		itemPropertyDescriptors
 				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_Transition_state_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_Transition_state_feature",
+						getResourceLocator(), getString("_UI_Transition_to_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_Transition_to_feature",
 								"_UI_Transition_type"),
-						SAAPPackage.Literals.TRANSITION__STATE, true, false, true, null, null, null));
+						SAAPPackage.Literals.TRANSITION__TO, true, false, true, null, null, null));
 	}
 
 	/**

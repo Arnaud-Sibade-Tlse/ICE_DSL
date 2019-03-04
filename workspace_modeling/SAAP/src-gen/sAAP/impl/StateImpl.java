@@ -2,15 +2,19 @@
  */
 package sAAP.impl;
 
+import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
+import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 import sAAP.SAAPPackage;
 import sAAP.State;
 import sAAP.Transition;
@@ -23,23 +27,24 @@ import sAAP.Transition;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link sAAP.impl.StateImpl#getTo <em>To</em>}</li>
+ *   <li>{@link sAAP.impl.StateImpl#getOutgoing <em>Outgoing</em>}</li>
  *   <li>{@link sAAP.impl.StateImpl#getName <em>Name</em>}</li>
- *   <li>{@link sAAP.impl.StateImpl#getTransition <em>Transition</em>}</li>
+ *   <li>{@link sAAP.impl.StateImpl#getIncoming <em>Incoming</em>}</li>
+ *   <li>{@link sAAP.impl.StateImpl#isDefault <em>Default</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class StateImpl extends MinimalEObjectImpl.Container implements State {
 	/**
-	 * The cached value of the '{@link #getTo() <em>To</em>}' reference.
+	 * The cached value of the '{@link #getOutgoing() <em>Outgoing</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getTo()
+	 * @see #getOutgoing()
 	 * @generated
 	 * @ordered
 	 */
-	protected Transition to;
+	protected EList<Transition> outgoing;
 
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -62,14 +67,34 @@ public class StateImpl extends MinimalEObjectImpl.Container implements State {
 	protected String name = NAME_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getTransition() <em>Transition</em>}' reference.
+	 * The cached value of the '{@link #getIncoming() <em>Incoming</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getTransition()
+	 * @see #getIncoming()
 	 * @generated
 	 * @ordered
 	 */
-	protected Transition transition;
+	protected EList<Transition> incoming;
+
+	/**
+	 * The default value of the '{@link #isDefault() <em>Default</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isDefault()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean DEFAULT_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isDefault() <em>Default</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isDefault()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean default_ = DEFAULT_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -95,65 +120,12 @@ public class StateImpl extends MinimalEObjectImpl.Container implements State {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Transition getTo() {
-		if (to != null && to.eIsProxy()) {
-			InternalEObject oldTo = (InternalEObject) to;
-			to = (Transition) eResolveProxy(oldTo);
-			if (to != oldTo) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SAAPPackage.STATE__TO, oldTo, to));
-			}
+	public EList<Transition> getOutgoing() {
+		if (outgoing == null) {
+			outgoing = new EObjectWithInverseResolvingEList<Transition>(Transition.class, this,
+					SAAPPackage.STATE__OUTGOING, SAAPPackage.TRANSITION__FROM);
 		}
-		return to;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Transition basicGetTo() {
-		return to;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetTo(Transition newTo, NotificationChain msgs) {
-		Transition oldTo = to;
-		to = newTo;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SAAPPackage.STATE__TO, oldTo,
-					newTo);
-			if (msgs == null)
-				msgs = notification;
-			else
-				msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setTo(Transition newTo) {
-		if (newTo != to) {
-			NotificationChain msgs = null;
-			if (to != null)
-				msgs = ((InternalEObject) to).eInverseRemove(this, SAAPPackage.TRANSITION__INCOMING, Transition.class,
-						msgs);
-			if (newTo != null)
-				msgs = ((InternalEObject) newTo).eInverseAdd(this, SAAPPackage.TRANSITION__INCOMING, Transition.class,
-						msgs);
-			msgs = basicSetTo(newTo, msgs);
-			if (msgs != null)
-				msgs.dispatch();
-		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SAAPPackage.STATE__TO, newTo, newTo));
+		return outgoing;
 	}
 
 	/**
@@ -182,17 +154,12 @@ public class StateImpl extends MinimalEObjectImpl.Container implements State {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Transition getTransition() {
-		if (transition != null && transition.eIsProxy()) {
-			InternalEObject oldTransition = (InternalEObject) transition;
-			transition = (Transition) eResolveProxy(oldTransition);
-			if (transition != oldTransition) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SAAPPackage.STATE__TRANSITION,
-							oldTransition, transition));
-			}
+	public EList<Transition> getIncoming() {
+		if (incoming == null) {
+			incoming = new EObjectWithInverseResolvingEList<Transition>(Transition.class, this,
+					SAAPPackage.STATE__INCOMING, SAAPPackage.TRANSITION__TO);
 		}
-		return transition;
+		return incoming;
 	}
 
 	/**
@@ -200,8 +167,8 @@ public class StateImpl extends MinimalEObjectImpl.Container implements State {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Transition basicGetTransition() {
-		return transition;
+	public boolean isDefault() {
+		return default_;
 	}
 
 	/**
@@ -209,18 +176,11 @@ public class StateImpl extends MinimalEObjectImpl.Container implements State {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetTransition(Transition newTransition, NotificationChain msgs) {
-		Transition oldTransition = transition;
-		transition = newTransition;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-					SAAPPackage.STATE__TRANSITION, oldTransition, newTransition);
-			if (msgs == null)
-				msgs = notification;
-			else
-				msgs.add(notification);
-		}
-		return msgs;
+	public void setDefault(boolean newDefault) {
+		boolean oldDefault = default_;
+		default_ = newDefault;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SAAPPackage.STATE__DEFAULT, oldDefault, default_));
 	}
 
 	/**
@@ -228,41 +188,14 @@ public class StateImpl extends MinimalEObjectImpl.Container implements State {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setTransition(Transition newTransition) {
-		if (newTransition != transition) {
-			NotificationChain msgs = null;
-			if (transition != null)
-				msgs = ((InternalEObject) transition).eInverseRemove(this, SAAPPackage.TRANSITION__STATE,
-						Transition.class, msgs);
-			if (newTransition != null)
-				msgs = ((InternalEObject) newTransition).eInverseAdd(this, SAAPPackage.TRANSITION__STATE,
-						Transition.class, msgs);
-			msgs = basicSetTransition(newTransition, msgs);
-			if (msgs != null)
-				msgs.dispatch();
-		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SAAPPackage.STATE__TRANSITION, newTransition,
-					newTransition));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case SAAPPackage.STATE__TO:
-			if (to != null)
-				msgs = ((InternalEObject) to).eInverseRemove(this, SAAPPackage.TRANSITION__INCOMING, Transition.class,
-						msgs);
-			return basicSetTo((Transition) otherEnd, msgs);
-		case SAAPPackage.STATE__TRANSITION:
-			if (transition != null)
-				msgs = ((InternalEObject) transition).eInverseRemove(this, SAAPPackage.TRANSITION__STATE,
-						Transition.class, msgs);
-			return basicSetTransition((Transition) otherEnd, msgs);
+		case SAAPPackage.STATE__OUTGOING:
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getOutgoing()).basicAdd(otherEnd, msgs);
+		case SAAPPackage.STATE__INCOMING:
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getIncoming()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -275,10 +208,10 @@ public class StateImpl extends MinimalEObjectImpl.Container implements State {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case SAAPPackage.STATE__TO:
-			return basicSetTo(null, msgs);
-		case SAAPPackage.STATE__TRANSITION:
-			return basicSetTransition(null, msgs);
+		case SAAPPackage.STATE__OUTGOING:
+			return ((InternalEList<?>) getOutgoing()).basicRemove(otherEnd, msgs);
+		case SAAPPackage.STATE__INCOMING:
+			return ((InternalEList<?>) getIncoming()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -291,16 +224,14 @@ public class StateImpl extends MinimalEObjectImpl.Container implements State {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case SAAPPackage.STATE__TO:
-			if (resolve)
-				return getTo();
-			return basicGetTo();
+		case SAAPPackage.STATE__OUTGOING:
+			return getOutgoing();
 		case SAAPPackage.STATE__NAME:
 			return getName();
-		case SAAPPackage.STATE__TRANSITION:
-			if (resolve)
-				return getTransition();
-			return basicGetTransition();
+		case SAAPPackage.STATE__INCOMING:
+			return getIncoming();
+		case SAAPPackage.STATE__DEFAULT:
+			return isDefault();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -310,17 +241,23 @@ public class StateImpl extends MinimalEObjectImpl.Container implements State {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case SAAPPackage.STATE__TO:
-			setTo((Transition) newValue);
+		case SAAPPackage.STATE__OUTGOING:
+			getOutgoing().clear();
+			getOutgoing().addAll((Collection<? extends Transition>) newValue);
 			return;
 		case SAAPPackage.STATE__NAME:
 			setName((String) newValue);
 			return;
-		case SAAPPackage.STATE__TRANSITION:
-			setTransition((Transition) newValue);
+		case SAAPPackage.STATE__INCOMING:
+			getIncoming().clear();
+			getIncoming().addAll((Collection<? extends Transition>) newValue);
+			return;
+		case SAAPPackage.STATE__DEFAULT:
+			setDefault((Boolean) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -334,14 +271,17 @@ public class StateImpl extends MinimalEObjectImpl.Container implements State {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case SAAPPackage.STATE__TO:
-			setTo((Transition) null);
+		case SAAPPackage.STATE__OUTGOING:
+			getOutgoing().clear();
 			return;
 		case SAAPPackage.STATE__NAME:
 			setName(NAME_EDEFAULT);
 			return;
-		case SAAPPackage.STATE__TRANSITION:
-			setTransition((Transition) null);
+		case SAAPPackage.STATE__INCOMING:
+			getIncoming().clear();
+			return;
+		case SAAPPackage.STATE__DEFAULT:
+			setDefault(DEFAULT_EDEFAULT);
 			return;
 		}
 		super.eUnset(featureID);
@@ -355,12 +295,14 @@ public class StateImpl extends MinimalEObjectImpl.Container implements State {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case SAAPPackage.STATE__TO:
-			return to != null;
+		case SAAPPackage.STATE__OUTGOING:
+			return outgoing != null && !outgoing.isEmpty();
 		case SAAPPackage.STATE__NAME:
 			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-		case SAAPPackage.STATE__TRANSITION:
-			return transition != null;
+		case SAAPPackage.STATE__INCOMING:
+			return incoming != null && !incoming.isEmpty();
+		case SAAPPackage.STATE__DEFAULT:
+			return default_ != DEFAULT_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -375,9 +317,11 @@ public class StateImpl extends MinimalEObjectImpl.Container implements State {
 		if (eIsProxy())
 			return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (name: ");
 		result.append(name);
+		result.append(", default: ");
+		result.append(default_);
 		result.append(')');
 		return result.toString();
 	}
