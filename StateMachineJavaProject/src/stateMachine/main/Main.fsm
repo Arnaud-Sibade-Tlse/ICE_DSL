@@ -1,0 +1,18 @@
+StateMachine helloworld {
+	State closed default
+	State opened
+	Transition closedToOpened {
+		closed.opened
+	}
+	Transition openedToClosed {
+		opened.closed
+	}
+	
+	State down 
+	Transition stop {
+		opened.down
+	}
+	Transition stop {
+		closed.down
+	}
+}
